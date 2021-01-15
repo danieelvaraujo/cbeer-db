@@ -36,7 +36,8 @@ class ProducaoController extends Controller
         $image = $request->file('foto_producao');
         
         $validator = Validator::make($input, [
-            'foto_producao' => 'nullable|image|mimes:jpeg,jpg,bmp,png',
+            // 'foto_producao' => 'nullable|image|mimes:jpeg,jpg,bmp,png',
+            'foto_producao' => 'nullable',
             'nome_criador' => 'required',
             'nome_producao' => 'required',
             'data_producao' => 'required',
