@@ -34,7 +34,6 @@ class ProducaoController extends Controller
     {
         $input = $request->all();
         $image = $request->file('foto_producao');
-        dd($image);
         
         $validator = Validator::make($input, [
             'foto_producao' => 'nullable|image|mimes:jpeg,jpg,bmp,png',
