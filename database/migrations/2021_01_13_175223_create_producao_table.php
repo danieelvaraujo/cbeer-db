@@ -16,11 +16,14 @@ class CreateProducaoTable extends Migration
         Schema::create('producao', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('foto_producao');
-            $table->string('nome_criador');
+            $table->string('lote');
             $table->string('nome_producao');
+            $table->string('nome_produtor');
             $table->string('data_producao');
-            $table->string('extra1');
-            $table->string('extra2');
+            $table->string('og_producao');
+            $table->string('acompanhamento');
+            $table->string('maturacao');
+            $table->string('data_envase');
             $table->timestamps();
         });
     }

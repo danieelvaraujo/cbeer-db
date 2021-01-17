@@ -59,7 +59,7 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
 
-            return response()->json(['success' => $success], 200);
+            return response()->json(['success' => $success, 'name' => $user['name']], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

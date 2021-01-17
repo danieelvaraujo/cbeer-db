@@ -14,6 +14,15 @@ class ProducaoController extends Controller
         $producao = Producao::all();
         $data = $producao->toArray();
 
+        if (is_null($producao)) {
+            $response = [
+                'success' => false,
+                'data' => 'Empty',
+                'message' => 'Produção não encontrada.'
+            ];
+            return response()->json($response, 404);
+        }
+
         $response = [
             'success' => true,
             'data' => $data,
@@ -38,11 +47,14 @@ class ProducaoController extends Controller
         $validator = Validator::make($input, [
             // 'foto_producao' => 'nullable|image|mimes:jpeg,jpg,bmp,png',
             'foto_producao' => 'nullable',
-            'nome_criador' => 'required',
+            'lote' => 'required',
             'nome_producao' => 'required',
+            'nome_produtor' => 'required',
             'data_producao' => 'required',
-            'extra1' => 'nullable',
-            'extra2' => 'nullable',
+            'og_producao' => 'required',
+            'acompanhamento' => 'nullable',
+            'maturacao' => 'required',
+            'data_envase' => 'required',
         ]);
      
         if ($validator->fails()) {
@@ -116,11 +128,14 @@ class ProducaoController extends Controller
 
         $validator = Validator::make($input, [
             'foto_producao' => 'nullable',
-            'nome_criador' => 'required',
+            'lote' => 'required',
             'nome_producao' => 'required',
+            'nome_produtor' => 'required',
             'data_producao' => 'required',
-            'extra1' => 'nullable',
-            'extra2' => 'nullable',
+            'og_producao' => 'required',            
+            'acompanhamento' => 'nullable',
+            'maturacao' => 'required',
+            'data_envase' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -137,11 +152,14 @@ class ProducaoController extends Controller
          }
 
         $producao->foto_producao = $input['foto_producao'];
-        $producao->nome_criador = $input['nome_criador'];
+        $producao->lote = $input['lote'];
         $producao->nome_producao = $input['nome_producao'];
+        $producao->nome_produtor = $input['nome_produtor'];
         $producao->data_producao = $input['data_producao'];
-        $producao->extra1 = $input['extra1'];
-        $producao->extra2 = $input['extra2'];
+        $producao->og_producao = $input['og_producao'];
+        $producao->acompanhamento = $input['acompanhamento'];
+        $producao->maturacao = $input['maturacao'];
+        $producao->data_envase = $input['data_envase'];
         $producao->save();
 
         $data = $producao->toArray();

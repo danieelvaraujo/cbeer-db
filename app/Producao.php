@@ -9,6 +9,6 @@ class Producao extends Model
     protected $table = "producao";
 
     protected $fillable = [
-        'foto_producao', 'nome_criador', 'nome_producao', 'data_producao', 'extra1', 'extra2'
+        'foto_producao', 'lote', 'nome_producao', 'nome_produtor', 'data_producao', 'og_producao', 'acompanhamento', 'maturacao', 'data_envase'
     ];
 }
